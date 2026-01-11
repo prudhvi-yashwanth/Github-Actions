@@ -1,0 +1,16 @@
+name: 04 - Using Actions
+
+on:
+    workflow_dispatch
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: using the Checkout Action
+              uses: actions/checkout@v4
+        
+            - name: Printing folder structure
+              run: |
+                echo "The folder structure is:"
+                ls -R
