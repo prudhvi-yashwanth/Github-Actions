@@ -1,37 +1,35 @@
-📖 GitHub Actions Overview
-🔹 What is GitHub Actions?
-GitHub Actions is an automation tool built directly into GitHub that allows developers to build, test, and deploy code from their repositories.
+# 📖 GitHub Actions Overview
 
-Workflows are defined in .github/workflows/*.yml files using YAML syntax.
+## 🔹 What is GitHub Actions?
+GitHub Actions is an automation tool built directly into GitHub that allows developers to **build, test, and deploy** code from their repositories.
 
-It is event-driven: workflows run when triggered by GitHub events (e.g., commits, pull requests, issue creation, or manual dispatch).
+- Workflows are defined in `.github/workflows/*.yml` files using **YAML syntax**.  
+- It is **event-driven**: workflows run when triggered by GitHub events (e.g., commits, pull requests, issue creation, or manual dispatch).
 
-🔹 Key Concepts
-Workflow: A YAML file describing automation steps.
+---
 
-Event: A trigger (push, PR, schedule, etc.) that starts a workflow.
+## 🔹 Key Concepts
+- **Workflow**: A YAML file describing automation steps.  
+- **Event**: A trigger (push, PR, schedule, etc.) that starts a workflow.  
+- **Job**: A set of steps executed on a runner.  
+- **Step**: An individual task (e.g., run a command, use an action).  
+- **Runner**: A virtual machine (like `ubuntu-latest`) where jobs run.  
+- **Action**: A reusable unit of code (community or custom) that performs a task.  
 
-Job: A set of steps executed on a runner.
+---
 
-Step: An individual task (e.g., run a command, use an action).
+## 🔹 Why Use GitHub Actions?
+- **CI/CD**: Automate builds, tests, and deployments.  
+- **Integration**: Works seamlessly with GitHub repositories.  
+- **Flexibility**: Supports multiple languages, frameworks, and environments.  
+- **Community Actions**: Thousands of prebuilt actions available on the GitHub Marketplace.  
+- **Scalability**: Run jobs in parallel, matrix builds, or self-hosted runners.  
 
-Runner: A virtual machine (like ubuntu-latest) where jobs run.
+---
 
-Action: A reusable unit of code (community or custom) that performs a task.
+## 🔹 Example Workflow
 
-🔹 Why Use GitHub Actions?
-CI/CD: Automate builds, tests, and deployments.
-
-Integration: Works seamlessly with GitHub repositories.
-
-Flexibility: Supports multiple languages, frameworks, and environments.
-
-Community Actions: Thousands of prebuilt actions available on the GitHub Marketplace.
-
-Scalability: Run jobs in parallel, matrix builds, or self-hosted runners.
-
-🔹 Example Workflow
-
+```yaml
 name: CI Pipeline
 
 on:
@@ -55,13 +53,12 @@ jobs:
 
       - name: Run tests
         run: npm test
-
-
-⚠️ Things to Keep in Mind
+-----------------------------------------------------------------
+## ⚠️ Things to Keep in Mind
 YAML syntax is strict: indentation and spacing matter.
 
 Secrets (like API keys) should be stored in GitHub repository settings, not hardcoded.
 
 Costs: Public repos get free minutes; private repos have usage limits depending on your plan.
 
-Validation: Use tools like actionlint or yamllint to catch errors early
+Validation: Use tools like actionlint or yamllint to catch errors early.
