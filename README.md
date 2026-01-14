@@ -8,7 +8,7 @@ GitHub Actions is an automation tool built directly into GitHub that allows deve
 
 ---
 
-## 🔹 Key Concepts
+## 🔹 Key Concepts.
 - **Workflow**: A YAML file describing automation steps.  
 - **Event**: A trigger (push, PR, schedule, etc.) that starts a workflow.  
 - **Job**: A set of steps executed on a runner.  
