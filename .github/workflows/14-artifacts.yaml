@@ -34,13 +34,7 @@ jobs:
         run: npm ci 
 
       - name: Unit tests
-        run: npm run test -- --coverage 
-        
-      - name: Debug coverage folder
-        run: |
-         ls -R 14-artifacts/react-app
-         ls -R 14-artifacts/react-app/coverage || echo "No coverage folder"
-
+        run: npm run test --coverage  --watchAll=false
 
       - name: upload test results
         uses: actions/upload-artifact@v4
