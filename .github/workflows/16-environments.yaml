@@ -1,0 +1,76 @@
+# name: 16 - Working with Environments
+# run-name: 16 - working with Environments | env - ${{inputs.target-env}}
+
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       target-env:
+#         type: environment 
+#         default: staging
+
+# jobs:
+#   echo:
+#     runs-on: ubuntu-latest
+#     environment: ${{inputs.target-env}}
+#     env: 
+#       my-env-value: ${{vars.MY_VAR_ENV_VALUE || 'default value'}}
+#     steps: 
+#       - name: Echo vars
+#         run: |
+#          echo "Env variable: ${{env.my-env-value}}"
+
+
+# See 16-environments/README.md for more information
+# about how to create and use environments in workflows.
+
+name: 16 - Working with Environments
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    environment: staging
+    env:
+      my-env-value: ${{ vars.MY_ENV_VALUE || 'default value' }}
+    steps:
+      - name: Echo vars
+        run: |
+          echo "Deploying to staging"
+  e2e-tests:
+    runs-on: ubuntu-latest
+    needs: deploy-staging
+    steps:
+      - name: E2E tests
+        run: echo "Running E2e"
+  deploy-prod-frontend:
+    runs-on: ubuntu-latest
+    needs: e2e-tests
+    environment: prod
+    env:
+      my-env-value: ${{ vars.MY_ENV_VALUE || 'default value' }}
+    steps:
+      - name: Echo vars
+        run: |
+          echo "Deploying prod frontend"
+  deploy-prod-backend1:
+    runs-on: ubuntu-latest
+    needs: e2e-tests
+    environment: prod
+    env:
+      my-env-value: ${{ vars.MY_ENV_VALUE || 'default value' }}
+    steps:
+      - name: Echo vars
+        run: |
+          echo "Deploying prod backend 1"
+  deploy-prod-backend2:
+    runs-on: ubuntu-latest
+    needs: e2e-tests
+    environment: prod
+    env:
+      my-env-value: ${{ vars.MY_ENV_VALUE || 'default value' }}
+    steps:
+      - name: Echo vars
+        run: |
+          echo "Deploying prod backend 2"
