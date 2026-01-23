@@ -1,3 +1,4 @@
 node_modules
 .DS_Store
 # .github/workflows/05-2-filters-activity-types.yaml
+!.github/actions/**/node_modules
