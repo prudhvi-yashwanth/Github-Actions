@@ -2,6 +2,7 @@ name: 18-2 -Reusable Workflows
 
 on:
   workflow_dispatch:
+  workflow_call:
 
 jobs:
   deploy:
