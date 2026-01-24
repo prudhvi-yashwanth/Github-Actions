@@ -1,4 +1,5 @@
-name: 18-2 -Reusable Workflows
+
+name: 18 - 3 - Reusable Workflows
 
 on:
   workflow_dispatch:
@@ -7,13 +8,9 @@ jobs:
   deploy:
     uses: ./.github/workflows/18-1-reusable-workflows.yaml
     with:
-      target-directory: dummy-dir
-
+      target-directory: dummmy-dir
   e2e-tests:
-    uses: prudhvi-yashwanth/github-actions-course-example-e2e/.github/workflows/e2e.yaml@main
-
-
-
-
-  
-
+    uses: udemy-lauromueller/github-actions-course-example-e2e/.github/workflows/e2e.yaml@main
+    needs: deploy
+    secrets:
+      access-token: ${{ secrets.GH_TOKEN }}
