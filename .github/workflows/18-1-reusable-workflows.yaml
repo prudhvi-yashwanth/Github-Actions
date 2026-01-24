@@ -1,0 +1,37 @@
+name: 18 - 1 - Reusable Workflows - Reusable Definition
+
+on:
+  workflow_call:
+    inputs:
+      target-directory:
+        type: string
+        required: true
+
+    outputs:
+      build-status:
+        description: The status of the build process
+        value: ${{jobs.delopy.outputs.build-status}}
+      url:
+        description: The URL of the deployed version
+        value: ${{jobs.delopy.outputs.url}}
+
+jobs:
+  delopy:
+    runs-on: ubuntu-latest
+    outputs: 
+      build-status: ${{steps.build.outputs.build-status}}
+      url: ${{steps.deploy.outputs.url}}
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+      - name: Build
+        id: build
+        run: |
+          echo "Building using directoty ${{inputs.target-directory}}"
+          echo "build-status=success" >> "$GITHUB_OUTPUT"
+      - name: Deploy
+        id: deploy
+        run: |
+          echo "Deployig build artifats"
+          echo "url=https://www.google.com" >> "$GITHUB_OUTPUT"
+
